@@ -9,4 +9,6 @@ libfunctrace_a_SOURCES = \
 	symbols.c \
 	trace.c
 
+bin_SCRIPTS = ft-config
+
 ## librik_la_LDFLAGS = -­version-info 0:0:0

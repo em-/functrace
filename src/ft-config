@@ -1,0 +1,18 @@
+#!/bin/sh
+ 
+# simple script to give correct compile options for libfunctrace
+# Read the file COPYING
+# Copyright 2001 John Levon <moz@compsoc.man.ac.uk>
+
+if [ "$1" == "--cflags" ]; then
+	exec echo "-finstrument-functions -g"
+fi 
+if [ "$1" == "--libs" ]; then
+	exec echo "-lfunctrace -lbfd -ldl -liberty"
+fi
+
+echo "Usage: ft-config [OPTIONS]"
+echo
+echo "  --cflags   C/C++ flags necessary for libfunctrace"
+echo "  --libs     Libraries needed for libfunctrace"
+ 
