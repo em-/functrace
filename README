@@ -1,0 +1,9 @@
+libfunctrace is a small library for examining the dynamic call graph of a program.
+
+It is a complement to ltrace and strace, tracing function calls within the program. It requires
+the target program to be re-compiled in order to be traced.
+
+Documentation can be found in the doc/ sub-directory.
+
+libfunctrace is licensed under the BSD license (see COPYING). libfunctrace was written by
+John Levon <moz@compsoc.man.ac.uk>.

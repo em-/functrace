@@ -7,7 +7,7 @@
  */
 
 #include <bfd.h>
-#include <string.h> 
+ 
 #include "functrace.h"
  
 // bfd of current image
@@ -27,7 +27,6 @@ char * ft_get_symbol(void * address)
 	uint i; 
 
 	for (i=0; i < nr_symbols; i++) {
-		//printf("0x%x\n", (uint)symbols[i]->value);
 		if ((symbols[i]->section->vma + symbols[i]->value) == (uint)address)
 			break;
 	}
@@ -72,7 +71,6 @@ int ft_open_image()
 		fprintf(stderr, "libfunctrace: couldn't get symbols.\n");
 		return -1;
 	}
-	printf("OPENIED IMAGE\n"); 
 
 	return 0;
 }
@@ -162,7 +160,6 @@ int ft_get_symbols()
 		}
 	}
  
-	printf("%d\n",nr_symbols); 
 	qsort(symbols, nr_symbols, sizeof(asymbol *), symcomp);
  
 	return 1;

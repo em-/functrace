@@ -47,6 +47,9 @@ else
 	exit
 fi
 
+# I need this hack to prevent ./configure looping forever ! 
+rm -f config.status
+ 
 echo
 echo 'run "./configure ; make"'
 echo

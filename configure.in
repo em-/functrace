@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(src/init.c)
+AC_INIT(src/trace.c)
 AM_INIT_AUTOMAKE(functrace, 0.0.1)
 
 dnl Checks for programs.
@@ -7,7 +7,7 @@ AC_PROG_CC
 AC_MSG_CHECKING("whether $CC accepts -Wall") 
 SAVE_CFLAGS=$CFLAGS
 CFLAGS="-Wall $CFLAGS" 
-AC_TRY_COMPILE(,,AC_MSG_RESULT("yes"),AC_MSG_RESULT("no");CFLAGS=$SAVE_CFLAGS)
+AC_TRY_COMPILE(,,AC_MSG_RESULT("yes");,AC_MSG_RESULT("no");CFLAGS=$SAVE_CFLAGS)
 AC_ARG_PROGRAM 
 AC_PROG_INSTALL 
 AC_PROG_LIBTOOL
