@@ -1,0 +1,5 @@
+functrace 0.0.2
+===============
+Move to git.
+
+Port to modern autotools infrastructure, using libabc as a guide.

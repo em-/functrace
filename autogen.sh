@@ -1,55 +1,27 @@
 #!/bin/sh
 
-ACLOCAL=aclocal
-AUTOMAKE=automake
-AUTOCONF=autoconf
-GNUM4=
+set -e
 
-echo -n "Locating GNU m4... "
-for prog in $M4 gm4 gnum4 m4 ; do
-  case `$prog --version 2>&1` in
-    *GNU*) ok=yes
-           GNUM4=$prog
-	   echo "found: $GNUM4"
-	   break ;;
-    *) ;;
-  esac
-done
-if test x$ok = xno ; then
-    echo "not found."
+if [ -f .git/hooks/pre-commit.sample -a ! -f .git/hooks/pre-commit ] ; then
+        cp -p .git/hooks/pre-commit.sample .git/hooks/pre-commit && \
+        chmod +x .git/hooks/pre-commit && \
+        echo "Activated pre-commit hook."
 fi
 
-# Generate the Makefiles and configure files
-if ( aclocal --version ) </dev/null > /dev/null 2>&1; then
-	echo -n "Building macros... "
-	$ACLOCAL
-	echo "done."
-else
-	echo "aclocal not found -- aborting"
-	exit
-fi
+autoreconf --install --symlink
 
-if ( $AUTOMAKE --version ) </dev/null > /dev/null 2>&1; then
-	echo -n "Building Makefile templates... "
-	$AUTOMAKE
-	echo "done."
-else
-	echo "automake not found -- aborting"
-	exit
-fi
+libdir() {
+        echo $(cd $1/$(gcc -print-multi-os-directory); pwd)
+}
 
-if ( $AUTOCONF --version ) </dev/null > /dev/null 2>&1; then
-	echo -n "Building configure... "
-	$AUTOCONF
-	echo "done."
-else
-	echo "autoconf not found -- aborting"
-	exit
-fi
+args="--prefix=/usr \
+--sysconfdir=/etc \
+--libdir=$(libdir /usr/lib)"
 
-# I need this hack to prevent ./configure looping forever ! 
-rm -f config.status
- 
 echo
-echo 'run "./configure ; make"'
+echo "----------------------------------------------------------------"
+echo "Initialized build system. For a common configuration please run:"
+echo "----------------------------------------------------------------"
+echo
+echo "./configure CFLAGS='-g -O0' $args"
 echo

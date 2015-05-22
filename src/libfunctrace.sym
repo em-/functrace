@@ -1,0 +1,7 @@
+LIBABC_1 {
+global:
+        __cyg_profile_func_enter;
+        __cyg_profile_func_exit;
+local:
+        *;
+};

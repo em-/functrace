@@ -1,0 +1,7 @@
+.dirstamp
+.deps/
+.libs/
+*.a
+*.la
+*.lo
+libfunctrace.pc
