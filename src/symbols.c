@@ -35,7 +35,7 @@ char * ft_get_symbol(void * address)
 		return "";
  
 	name = symbols[i]->name;
-	cp = (char *)unmangled = (char *)name;
+	cp = unmangled = name;
 	while (*cp && *cp == '_')
 		cp++;
 
